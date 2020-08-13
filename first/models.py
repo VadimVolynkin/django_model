@@ -2,15 +2,46 @@ import uuid
 import datetime
 from enum import Enum
 
+from django.urls import reverse
 from django.utils import timezone
 
 from django.db import models
 from django.conf import settings
 
 
-class SmallAutoFieldClass(models.Model):
+class Manufacturer(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('manufacturer_detail', kwargs={'id': self.pk})
+
+
+class Car(models.Model):
+    name = models.CharField(max_length=200)
+    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, related_name='cars_related')
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('car_detail', kwargs={'id': self.pk})
+
+
+
+
+
+
+
+
+
+
+
+
     # auto_field = models.AutoField(primary_key=True)
-    small_auto_field = models.SmallAutoField(primary_key=True)
+    # small_auto_field = models.SmallAutoField(primary_key=True)
     # big_auto_field = models.BigAutoField(primary_key=True)
     # uuid_field = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
@@ -49,19 +80,18 @@ class SmallAutoFieldClass(models.Model):
     # binary_field = models.BinaryField(default=bytes('hello world', 'utf-8'))   # convert string hello world in bytes
 
     # OTHER TYPES ============================================================
-    integer_choices = models.IntegerChoices('Color', names='RED GREEN BLUE')
-    text_choices = models.TextChoices('Color', names='RED GREEN BLUE')
-    choices = models.Choices('Color', names='RED GREEN BLUE')
-    empty_field = models.Empty()
-    json_field = models.JSONField()
+    # integer_choices = models.IntegerChoices('Color', names='RED GREEN BLUE')
+    # text_choices = models.TextChoices('Color', names='RED GREEN BLUE')
+    # choices = models.Choices('Color', names='RED GREEN BLUE')
+    # empty_field = models.Empty()
+    # json_field = models.JSONField()
 
 
 
-    # НЕТ В ДОКУМЕНТАЦИИ 3.0
-
+    # NOT in Documentation 3.0
     # integer_choices = models.IntegerChoices()
     # text_choices = models.TextChoices()
     # comma_separated_integer_field = models.CommaSeparatedIntegerField()
     # choices = models.Choices('Color', names='RED GREEN BLUE')
-    # ip_adress_field = models.IPAddressField()
+    # ip_address_field = models.IPAddressField()
     # json_field = models.JSONField()

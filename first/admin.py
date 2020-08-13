@@ -1,8 +1,12 @@
 from django.contrib import admin
-from . models import SmallAutoFieldClass
+from . models import Car, Manufacturer
 
 
 
-@admin.register(SmallAutoFieldClass)
-class SmallAutoFieldClassAdmin(admin.ModelAdmin):
+@admin.register(Car)
+class CarAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Manufacturer)
+class ManufacturerAdmin(admin.ModelAdmin):
     pass
