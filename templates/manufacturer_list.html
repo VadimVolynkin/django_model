@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
-<!--#TODO вывести все модели автомобилей к каждому производителю -->
 
 {% block content %}
 
 {% for manufacturer in manufacturerlist %}
 <ul>
     <li>
-        <a href="{% url 'manufacturer_detail' manufacturer.id %}">{{ manufacturer.name }}</a>
+        <a href="{{ manufacturer.get_absolute_url }}">{{ manufacturer.name }}</a>
 
         {% for car in manufacturer.cars_related.all %}
             {{ car.name }}

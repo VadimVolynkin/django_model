@@ -6,7 +6,7 @@
 {% for car in carlist %}
 <ul>
     <li>
-       <a href="{% url 'car_detail' car.id %}">{{ car.name }}</a>
+       <a href="{{ car.get_absolute_url }}">{{ car.name }}</a>
         {{ car.manufacturer.name }}
     </li>
 </ul>

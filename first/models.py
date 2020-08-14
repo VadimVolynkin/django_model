@@ -21,6 +21,7 @@ class Manufacturer(models.Model):
 
 class Car(models.Model):
     name = models.CharField(max_length=200)
+    xxx = ['Audi', 'BMW']
     manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, related_name='cars_related')
 
     def __str__(self):
