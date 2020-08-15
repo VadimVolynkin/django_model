@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% for subscriber in subscriberlist %}
+<ul>
+    <li>
+       <a href="{{ subscriber.get_absolute_url }}">{{ subscriber.name }}</a>
+        <div>
+            <b>подписан на: </b>
+            {% for sub in subscribers.some.all %}
+                {{ sub }}
+            {% endfor %}
+        </div>
+
+        <div>
+            <b>на него подписаны:</b>
+            {% for subscriber in subscriber.relations_from.all %}
+                {{ subscriber.frm }}
+            {% endfor %}
+        </div>
+
+    </li>
+</ul>
+
+{% endfor %}
+
+
+{% endblock content %}
