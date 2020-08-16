@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for place in place_list %}
+<ul>
+    <li>
+        {{ place.name }}
+        {{ place.address }}
+        {{ place.restaurant.serves_hot_dogs }}
+    </li>
+</ul>
+
+
+
+{% endfor %}
+
+
+{% endblock content %}
